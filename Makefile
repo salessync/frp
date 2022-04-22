@@ -17,10 +17,10 @@ fmt:
 	go fmt ./...
 
 frps:
-	env CGO_ENABLED=0 go build -trimpath -ldflags "$(LDFLAGS)" -o bin/frps ./cmd/frps
+	env CGO_ENABLED=1 go build -trimpath -ldflags "$(LDFLAGS)" -o bin/frps ./cmd/frps
 
 frpc:
-	env CGO_ENABLED=0 go build -trimpath -ldflags "$(LDFLAGS)" -o bin/frpc ./cmd/frpc
+	env CGO_ENABLED=1 go build -trimpath -ldflags "$(LDFLAGS)" -o bin/frpc ./cmd/frpc
 
 test: gotest
 
@@ -38,7 +38,7 @@ e2e-trace:
 	DEBUG=true LOG_LEVEL=trace ./hack/run-e2e.sh
 
 alltest: gotest e2e
-	
+
 clean:
 	rm -f ./bin/frpc
 	rm -f ./bin/frps
