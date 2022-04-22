@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Overview from '../components/Overview.vue'
+import Requests from '../components/Requests.vue'
 import ProxiesTcp from '../components/ProxiesTcp.vue'
 import ProxiesUdp from '../components/ProxiesUdp.vue'
 import ProxiesHttp from '../components/ProxiesHttp.vue'
@@ -16,9 +17,9 @@ export default new Router({
         name: 'Overview',
         component: Overview
     }, {
-        path: '/proxies/tcp',
-        name: 'ProxiesTcp',
-        component: ProxiesTcp
+        path: '/request',
+        name: 'Requests',
+        component: Requests
     }, {
         path: '/proxies/udp',
         name: 'ProxiesUdp',
@@ -35,6 +36,10 @@ export default new Router({
         path: '/proxies/stcp',
         name: 'ProxiesStcp',
         component: ProxiesStcp
+    }, {
+        path: '/proxies/tcp',
+        name: 'ProxiesTcp',
+        component: ProxiesTcp
     }, {
         path: '/proxies/sudp',
         name: 'ProxiesSudp',

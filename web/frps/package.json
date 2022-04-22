@@ -4,7 +4,7 @@
   "author": "fatedier",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server -d --inline --hot --env.dev",
+    "dev": "npx webpack --watch --env.dev",
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },
   "dependencies": {
@@ -12,6 +12,7 @@
     "echarts": "^3.5.0",
     "element-ui": "^2.3.8",
     "humanize-plus": "^1.8.2",
+    "moment": "^2.29.3",
     "vue": "^2.5.16",
     "vue-resource": "^1.2.1",
     "vue-router": "^2.3.0",

@@ -4,12 +4,15 @@
             <el-row>
                 <a class="brand" href="#">frp</a>
             </el-row>
+
+            <script type="application/javascript" src="https://kit.fontawesome.com/8aac3a7f96.js" crossorigin="anonymous"></script>
         </header>
         <section>
             <el-row>
                 <el-col id="side-nav" :xs="24" :md="4">
                     <el-menu default-active="1" mode="vertical" theme="light" router="false" @select="handleSelect">
                         <el-menu-item index="/">Overview</el-menu-item>
+                        <el-menu-item index="/request">Requests</el-menu-item>
                         <el-submenu index="/proxies">
                             <template slot="title">Proxies</template>
                             <el-menu-item index="/proxies/tcp">TCP</el-menu-item>
