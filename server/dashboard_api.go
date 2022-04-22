@@ -18,6 +18,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/salessync/frp/pkg/util/sqlite"
+
 	"github.com/salessync/frp/pkg/config"
 	"github.com/salessync/frp/pkg/consts"
 	"github.com/salessync/frp/pkg/metrics/mem"
@@ -54,6 +56,30 @@ type serverInfoResp struct {
 // /healthz
 func (svr *Service) Healthz(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
+}
+
+// api/requests
+func (svr *Service) APIRequests(w http.ResponseWriter, r *http.Request) {
+	res := GeneralResponse{Code: 200}
+	defer func() {
+		log.Info("Http response [%s]: code [%d]", r.URL.Path, res.Code)
+		w.WriteHeader(res.Code)
+		if len(res.Msg) > 0 {
+			w.Write([]byte(res.Msg))
+		}
+	}()
+
+	log.Info("Http request: [%s]", r.URL.Path)
+
+	log.Info("Grabbing requests from sqlite")
+	allPastRequests := sqlite.FetchRequests()
+
+	buf, err := json.Marshal(&allPastRequests)
+	if err != nil {
+		log.Info(err.Error())
+	}
+
+	res.Msg = string(buf)
 }
 
 // api/serverinfo

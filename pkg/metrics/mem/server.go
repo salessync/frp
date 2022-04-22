@@ -18,6 +18,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/salessync/frp/pkg/util/sqlite"
+
 	"github.com/salessync/frp/pkg/util/log"
 	"github.com/salessync/frp/pkg/util/metric"
 	server "github.com/salessync/frp/server/metrics"
@@ -31,6 +33,8 @@ func init() {
 	ServerMetrics = sm
 	StatsCollector = sm
 	sm.run()
+
+	sqlite.InitDB()
 }
 
 type serverMetrics struct {

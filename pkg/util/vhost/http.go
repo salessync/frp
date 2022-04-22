@@ -20,11 +20,14 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/salessync/frp/pkg/util/sqlite"
 
 	frpLog "github.com/salessync/frp/pkg/util/log"
 	"github.com/salessync/frp/pkg/util/util"
@@ -47,6 +50,41 @@ type HTTPReverseProxy struct {
 	responseHeaderTimeout time.Duration
 }
 
+func serializeQueryParams(req *http.Request) string {
+	req.ParseForm()
+
+	serializedParams := ""
+	for k, v := range req.Form {
+		serializedParams = serializedParams + fmt.Sprintf("%s=%s&", k, v[0])
+	}
+
+	return strings.TrimSuffix(serializedParams, "&")
+}
+
+func serializeRequestBody(req *http.Request) []byte {
+	if req.Body != nil {
+		reqBody, err := ioutil.ReadAll(req.Body)
+		if err != nil {
+			frpLog.Warn(err.Error())
+
+			return []byte{}
+		}
+		return reqBody
+	}
+
+	return []byte{}
+}
+
+func serializeRequestHeaders(req *http.Request) string {
+	serializedHeaders := ""
+
+	for k, v := range req.Header {
+		serializedHeaders = serializedHeaders + fmt.Sprintf("%q: %q|::|", k, v[0])
+	}
+
+	return strings.TrimSuffix(serializedHeaders, "|::|")
+}
+
 func NewHTTPReverseProxy(option HTTPReverseProxyOptions, vhostRouter *Routers) *HTTPReverseProxy {
 	if option.ResponseHeaderTimeoutS <= 0 {
 		option.ResponseHeaderTimeoutS = 60
@@ -60,6 +98,22 @@ func NewHTTPReverseProxy(option HTTPReverseProxyOptions, vhostRouter *Routers) *
 			req.URL.Scheme = "http"
 			url := req.Context().Value(RouteInfoURL).(string)
 			oldHost, _ := util.CanonicalHost(req.Context().Value(RouteInfoHost).(string))
+
+			serializedQueryParamsStr := serializeQueryParams(req)
+			serializedBodyStr := serializeRequestBody(req)
+			serializedHeadersStr := serializeRequestHeaders(req)
+
+			protocol := "http://"
+			if req.TLS != nil {
+				protocol = "https://"
+			}
+
+			baseUrl := req.Context().Value(RouteInfoHost).(string)
+			fullUrl := protocol + baseUrl + req.URL.Path
+
+			insertQuery := fmt.Sprintf("INSERT INTO request(original_host, url, method, query_params, body, headers) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')", oldHost, fullUrl, req.Method, serializedQueryParamsStr, serializedBodyStr, serializedHeadersStr)
+			sqlite.RunQuery(insertQuery)
+
 			rc := rp.GetRouteConfig(oldHost, url)
 			if rc != nil {
 				if rc.RewriteHost != "" {
