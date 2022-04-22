@@ -8,11 +8,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/fatedier/frp/client/event"
-	"github.com/fatedier/frp/client/health"
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
-	"github.com/fatedier/frp/pkg/util/xlog"
+	"github.com/salessync/frp/client/event"
+	"github.com/salessync/frp/client/health"
+	"github.com/salessync/frp/pkg/config"
+	"github.com/salessync/frp/pkg/msg"
+	"github.com/salessync/frp/pkg/util/xlog"
 
 	"github.com/fatedier/golib/errors"
 )

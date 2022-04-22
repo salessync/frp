@@ -17,8 +17,8 @@ package config
 import (
 	"testing"
 
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/consts"
+	"github.com/salessync/frp/pkg/auth"
+	"github.com/salessync/frp/pkg/consts"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -68,7 +68,7 @@ var (
 		meta_var1 = 123
 		meta_var2 = 234
 		udp_packet_size = 1509
-		
+
 		# all proxy
 		[ssh]
 		type = tcp
@@ -86,13 +86,13 @@ var (
 		health_check_interval_s = 19
 		meta_var1 = 123
 		meta_var2 = 234
-		
+
 		[ssh_random]
 		type = tcp
 		local_ip = 127.0.0.9
 		local_port = 29
 		remote_port = 9
-		
+
 		[range:tcp_port]
 		type = tcp
 		local_ip = 127.0.0.9
@@ -100,7 +100,7 @@ var (
 		remote_port = 6010-6011,6019
 		use_encryption = false
 		use_compression = false
-		
+
 		[dns]
 		type = udp
 		local_ip = 114.114.114.114
@@ -108,7 +108,7 @@ var (
 		remote_port = 6009
 		use_encryption
 		use_compression
-		
+
 		[range:udp_port]
 		type = udp
 		local_ip = 114.114.114.114
@@ -116,7 +116,7 @@ var (
 		remote_port = 6000,6010-6011
 		use_encryption
 		use_compression
-		
+
 		[web01]
 		type = http
 		local_ip = 127.0.0.9
@@ -135,7 +135,7 @@ var (
 		health_check_interval_s = 19
 		health_check_max_failed = 3
 		health_check_timeout_s = 3
-		
+
 		[web02]
 		type = https
 		local_ip = 127.0.0.9
@@ -145,7 +145,7 @@ var (
 		subdomain = web01
 		custom_domains = web02.yourdomain.com
 		proxy_protocol_version = v2
-		
+
 		[secret_tcp]
 		type = stcp
 		sk = abcdefg
@@ -153,7 +153,7 @@ var (
 		local_port = 22
 		use_encryption = false
 		use_compression = false
-		
+
 		[p2p_tcp]
 		type = xtcp
 		sk = abcdefg
@@ -161,34 +161,34 @@ var (
 		local_port = 22
 		use_encryption = false
 		use_compression = false
-		
+
 		[tcpmuxhttpconnect]
 		type = tcpmux
 		multiplexer = httpconnect
 		local_ip = 127.0.0.1
 		local_port = 10701
 		custom_domains = tunnel1
-		
+
 		[plugin_unix_domain_socket]
 		type = tcp
 		remote_port = 6003
 		plugin = unix_domain_socket
 		plugin_unix_path = /var/run/docker.sock
-		
+
 		[plugin_http_proxy]
 		type = tcp
 		remote_port = 6004
 		plugin = http_proxy
 		plugin_http_user = abc
 		plugin_http_passwd = abc
-		
+
 		[plugin_socks5]
 		type = tcp
 		remote_port = 6005
 		plugin = socks5
 		plugin_user = abc
 		plugin_passwd = abc
-		
+
 		[plugin_static_file]
 		type = tcp
 		remote_port = 6006
@@ -197,7 +197,7 @@ var (
 		plugin_strip_prefix = static
 		plugin_http_user = abc
 		plugin_http_passwd = abc
-		
+
 		[plugin_https2http]
 		type = https
 		custom_domains = test.yourdomain.com
@@ -207,7 +207,7 @@ var (
 		plugin_key_path = ./server.key
 		plugin_host_header_rewrite = 127.0.0.1
 		plugin_header_X-From-Where = frp
-		
+
 		[plugin_http2https]
 		type = http
 		custom_domains = test.yourdomain.com
@@ -215,7 +215,7 @@ var (
 		plugin_local_addr = 127.0.0.1:443
 		plugin_host_header_rewrite = 127.0.0.1
 		plugin_header_X-From-Where = frp
-		
+
 		# visitor
 		[secret_tcp_visitor]
 		role = visitor
@@ -226,7 +226,7 @@ var (
 		bind_port = 9000
 		use_encryption = false
 		use_compression = false
-		
+
 		[p2p_tcp_visitor]
 		role = visitor
 		type = xtcp

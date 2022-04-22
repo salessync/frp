@@ -6,13 +6,13 @@ import (
 	"os"
 	"testing"
 
-	"github.com/fatedier/frp/pkg/util/log"
-	"github.com/fatedier/frp/test/e2e/framework"
+	"github.com/salessync/frp/pkg/util/log"
+	"github.com/salessync/frp/test/e2e/framework"
 
 	// test source
-	_ "github.com/fatedier/frp/test/e2e/basic"
-	_ "github.com/fatedier/frp/test/e2e/features"
-	_ "github.com/fatedier/frp/test/e2e/plugin"
+	_ "github.com/salessync/frp/test/e2e/basic"
+	_ "github.com/salessync/frp/test/e2e/features"
+	_ "github.com/salessync/frp/test/e2e/plugin"
 
 	_ "github.com/onsi/ginkgo"
 )

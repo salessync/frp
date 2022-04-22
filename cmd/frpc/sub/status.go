@@ -23,8 +23,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/fatedier/frp/client"
-	"github.com/fatedier/frp/pkg/config"
+	"github.com/salessync/frp/client"
+	"github.com/salessync/frp/pkg/config"
 
 	"github.com/rodaine/table"
 	"github.com/spf13/cobra"

@@ -17,8 +17,8 @@ package auth
 import (
 	"fmt"
 
-	"github.com/fatedier/frp/pkg/consts"
-	"github.com/fatedier/frp/pkg/msg"
+	"github.com/salessync/frp/pkg/consts"
+	"github.com/salessync/frp/pkg/msg"
 )
 
 type BaseConfig struct {

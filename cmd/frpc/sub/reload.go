@@ -22,7 +22,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/config"
+	"github.com/salessync/frp/pkg/config"
 
 	"github.com/spf13/cobra"
 )

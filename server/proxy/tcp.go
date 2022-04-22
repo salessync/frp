@@ -19,7 +19,7 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/fatedier/frp/pkg/config"
+	"github.com/salessync/frp/pkg/config"
 )
 
 type TCPProxy struct {

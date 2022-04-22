@@ -3,7 +3,7 @@ package event
 import (
 	"errors"
 
-	"github.com/fatedier/frp/pkg/msg"
+	"github.com/salessync/frp/pkg/msg"
 )
 
 type Type int

@@ -23,13 +23,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/xlog"
-	"github.com/fatedier/frp/server/controller"
-	"github.com/fatedier/frp/server/metrics"
+	"github.com/salessync/frp/pkg/config"
+	"github.com/salessync/frp/pkg/msg"
+	plugin "github.com/salessync/frp/pkg/plugin/server"
+	frpNet "github.com/salessync/frp/pkg/util/net"
+	"github.com/salessync/frp/pkg/util/xlog"
+	"github.com/salessync/frp/server/controller"
+	"github.com/salessync/frp/server/metrics"
 
 	frpIo "github.com/fatedier/golib/io"
 )
