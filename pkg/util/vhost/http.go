@@ -62,17 +62,18 @@ func serializeQueryParams(req *http.Request) string {
 }
 
 func serializeRequestBody(req *http.Request) []byte {
-	if req.Body != nil {
-		reqBody, err := ioutil.ReadAll(req.Body)
-		if err != nil {
-			frpLog.Warn(err.Error())
-
-			return []byte{}
-		}
-		return reqBody
+	if req.Body == nil {
+		return []byte{}
 	}
 
-	return []byte{}
+	reqBody, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		frpLog.Warn(err.Error())
+
+		return []byte{}
+	}
+	req.Body = ioutil.NopCloser(bytes.NewBuffer(reqBody))
+	return reqBody
 }
 
 func serializeRequestHeaders(req *http.Request) string {
