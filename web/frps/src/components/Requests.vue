@@ -100,18 +100,16 @@
           url += `?${request.query_params}`;
         }
 
+        // TODO: Clean this up
         let headers = {};
         let rawHeaders = request.headers.split('|::|');
         rawHeaders.forEach(raw => {
-          console.log('RAW HEADER: ', raw)
           let rawHeadersSplit = raw.split(':');
           let key = rawHeadersSplit[0].trim().slice(1, -1);
           let value = rawHeadersSplit[1].trim().slice(1, -1);
 
           headers[key] = value;
         });
-
-
 
         let options = {
           method: request.method,
