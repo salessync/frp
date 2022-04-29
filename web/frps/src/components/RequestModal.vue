@@ -47,6 +47,11 @@
   .modal-text-right {
     text-align: right;
   }
+
+  .request-header-row {
+    display: flex;
+    width: 100%;
+  }
 </style>
 
 <template>
@@ -59,7 +64,9 @@
         <div class="modal-half-row modal-text-right">Url:{{request.url}}</div>
 
         <div class="modal-row modal-sub-header">Headers</div>
-        <div class="modal-row" v-for="header in request.headers.split('|::|')">{{header}}</div>
+        <div class="modal-row" v-for="header in request.headers.split('|::|')">
+          <RequestHeaderRow :header="header" />
+        </div>
 
         <div class="modal-row modal-sub-header">Query Params</div>
         <div class="modal-row">{{request.query_params}}</div>
@@ -71,13 +78,18 @@
 </template>
 
 <script>
+  import RequestHeaderRow from './RequestHeaderRow.vue';
+
   export default {
-      props: ['show', 'request'],
-      methods: {
-        hideModal() {
-          this.$props.show = false;
-        }
-      }
+    props: ['show', 'request'],
+    components: {
+      RequestHeaderRow
+    },
+    methods: {
+      hideModal() {
+        this.$props.show = false;
+      },
+    }
   }
 </script>
 
