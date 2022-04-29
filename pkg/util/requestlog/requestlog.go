@@ -79,7 +79,7 @@ func serializeRequestHeaders(req *http.Request) string {
 	serializedHeaders := ""
 
 	for k, v := range req.Header {
-		serializedHeaders = serializedHeaders + fmt.Sprintf("%q: %q|::|", k, v[0])
+		serializedHeaders = serializedHeaders + fmt.Sprintf("%s|:::| %s|::|", k, v[0])
 	}
 
 	return strings.TrimSuffix(serializedHeaders, "|::|")
