@@ -112,7 +112,7 @@ We will switch v0 to v1 at the right time and only accept bug fixes and improvem
 
 ## Example Usage
 
-Firstly, download the latest programs from [Release](https://github.com/salessync/frp/releases) page according to your operating system and architecture.
+Firstly, download the latest programs from [Release](https://github.com/fatedier/frp/releases) page according to your operating system and architecture.
 
 Put `frps` and `frps.ini` onto your server A with public IP.
 
